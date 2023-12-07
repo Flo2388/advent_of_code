@@ -12,7 +12,7 @@ def number_finder(line: str) -> int:
 
 def main():
     temp_results = []
-    with open("./day_1_input.txt", "r") as file:
+    with open("../inputs/day_1_input.txt", "r") as file:
 
         for line in file:
             line_result = number_finder(line.strip())
