@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import re
 
+def get_similarity(element_a: int, list_b: list) -> int:
+    count = 0
+    for element_b in list_b:
+        if element_a == element_b:
+            count = count + 1
+            
+    return (element_a * count)
+
 def get_distance_difference(distance_a: int, distance_b:int) -> int:
     if distance_a > distance_b:
         return (distance_a - distance_b)
@@ -41,6 +49,7 @@ def line_split(line: str) -> list[str]:
 def main():
     list_a = []
     list_b = []
+    similarity = 0
     total_distance = 0
     
     with open("../inputs/day_1_input.txt" , "r") as input:
@@ -48,7 +57,11 @@ def main():
             split_line = line_split(line)
             conv_list = convert_to_int(split_line)
             list_a.append(conv_list[0])
-            list_b.append(conv_list[1])    
+            list_b.append(conv_list[1])
+            
+        for element_a in list_a:
+            similarity = similarity + get_similarity(element_a, list_b)
+                
     while True:
         if (len(list_a) or len(list_b)) == 0:
             break
@@ -60,6 +73,7 @@ def main():
             total_distance = total_distance + (get_distance_difference(distance_a, distance_b))
             
     print("Total distance: " + str(total_distance))
+    print("Similarity: " + str(similarity))
             
             
 
